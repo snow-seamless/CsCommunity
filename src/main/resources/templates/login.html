@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆论坛</title>
+    <head>
+        <script src="/js/jquery-3.6.0.min.js"></script>
+        <script src="/dist/jquery.validator.min.js?local=zh-CN"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/moment.min.js"></script>
+        <script src="/js/community.js"></script>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/bootstrap-theme.css">
+        <link rel="stylesheet" href="/dist/jquery.validator.css">
+        <link rel="stylesheet" href="/css/login.css">
+    </head>
+</head>
+<body class="login-body">
+<div class="login-main">
+    <div class="login-page container-fluid">
+        <div class="row login-page-main">
+            <div class="login-left col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <div>
+                    <h3>
+                        <p style="text-align: center">
+                            <b><a href="/">计算机知识交流论坛</a></b>
+                        </p>
+                    </h3>
+                </div>
+                <form class="login-form" action="/login" method="post"
+                      data-validator-option="{theme:'yellow_right_effect', stopOnError:true}">
+                    <div class="form-group">
+                        <label for="login-account">
+                            <img src="/icons/account.svg" class="login-icon">&nbsp;账号
+                        </label>
+                        <input type="text" class="form-control" id="login-account" placeholder="请输入您的账号..."
+                               name="account" data-rule="required" autocomplete="on">
+                    </div>
+                    <div class="form-group">
+                        <label for="login-pwd">
+                            <img src="/icons/pwd.svg" class="login-icon">&nbsp;密码
+                        </label>
+                        <input type="password" class="form-control" id="login-pwd" placeholder="请输入您的密码..."
+                               name="password" data-rule="密码:required;length(6~16)">
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input id="remember-me" type="checkbox" name="rememberFlag">记住我
+                        </label>
+                    </div>
+                    <div style="height: 60px;">
+                        <button class="btn btn-default btn-forget-pwd" onclick="modify()">忘记密码</button>
+                        <button type="submit" class="btn btn-primary btn-publish">登录</button>
+                    </div>
+                    <div class="alert alert-danger alert-dismissible" role="alert" th:if="${loginFail != null}">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">
+                                &times;
+                            </span>
+                        </button>
+                        <strong th:if="${loginFail.equals('passwordError')} == true">请输入正确的密码！</strong>
+                        <strong th:if="${loginFail.equals('passwordError')} != true">请输入正确的账号！</strong>
+                    </div>
+                </form>
+            </div>
+            <div class="login-right col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <div class="login-other-all">
+                    <h4>第三方登录</h4>
+                    <a class="login-other"
+                       th:href="@{https://github.com/login/oauth/authorize(client_id='671e0e75da19a2cb124b',redirect_uri=${#httpServletRequest.getServletContext().getAttribute('redirectUri')},scope='user',state=1)}">
+                        <img src="/images/github.svg" class="login-icon">
+                        Github
+                    </a>
+                    <a href="https://gitee.com/oauth/authorize?client_id=8946d87d3965015cdb6eb9ac8262a077b61a8636ab66dbad08485529677cef64&amp;redirect_uri=http://www.dbeetle.cn/giteeCallback&amp;response_type=code&amp;scope=user_info&amp;state=giteelogin"
+                       class="login-other">
+                        <img src="/images/gitee.svg" class="login-icon">
+                        Gitee（暂时无法使用）
+                    </a>
+                    <a href="/loginByQQ">
+                        <img src="/images/qq.svg" class="login-icon">
+                        QQ（暂时无法使用）
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        <div class="login-page-footer">
+            <img src="/icons/info.svg" class="login-icon">
+            <b>没有账号？<a href="/register">立即注册</a></b>
+        </div>
+    </div>
+</div>
+
+<!--页尾-->
+<div style="text-align: center" th:insert="~{footer :: foot}"></div>
+</body>
+</html>

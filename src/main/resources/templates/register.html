@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册账号</title>
+    <head>
+        <script src="/js/jquery-3.6.0.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/moment.min.js"></script>
+        <script src="/dist/jquery.validator.min.js?local=zh-CN"></script>
+        <script src="/js/community.js"></script>
+        <link rel="stylesheet" href="/css/login.css">
+        <link rel="stylesheet" href="/dist/jquery.validator.css">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/bootstrap-theme.css">
+        <link rel="stylesheet" href="//at.alicdn.com/t/font_1758372_iu83tgg8gw.css">
+
+    </head>
+</head>
+<body class="login-body">
+<div class="login-main">
+    <div class="register-page container-fluid">
+        <div class="row register-page-main">
+            <div class="login-left col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <div>
+                    <h3>
+                        <p style="text-align: center">
+                            <b><a href="/">计算机知识交流论坛</a></b>
+                        </p>
+                    </h3>
+                </div>
+                <form class="login-form" action="/register" method="post"
+                      data-validator-option="{theme:'yellow_right_effect', stopOnError:true}">
+
+                    <div class="form-group">
+                        <label for="login-account">
+                            <img src="/icons/account.svg" class="login-icon"> 账号
+                        </label>
+                        <input type="text" class="form-control" id="login-account" placeholder="请输入您的账号..."
+                               name="account" data-rule="required">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="login-accountName">
+                            <img src="/icons/userName.svg" class="login-icon"> 昵称
+                        </label>
+                        <input type="text" class="form-control" id="login-accountName" placeholder="请输入您的昵称..."
+                               name="accountName" data-rule="required">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="login-email">
+                            <img src="/icons/envelope-open.svg" class="login-icon"> 邮箱
+                        </label>
+                        <input type="email" class="form-control" id="login-email" placeholder="请输入您的邮箱..."
+                               name="email" data-rule="邮箱:required;email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="login-pwd">
+                            <img src="/icons/lock.svg" class="login-icon"> 密码
+                        </label>
+                        <input type="password" class="form-control" id="login-pwd" placeholder="请输入您的密码..."
+                               name="password" data-rule="密码:required;length(6~16)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="register-code">
+                            <img src="/icons/code.svg" class="login-icon">&nbsp;验证码
+                            <button id="send-email-btn" type="button" class="btn btn-success btn-xs send-email-btn"
+                                    onclick="sendActiveEmail()">点击获取验证码
+                            </button>
+                        </label>
+                        <input type="text" class="form-control" id="register-code" placeholder="请输入您获取的验证码..."
+                               name="code"
+                               data-rule="验证码:required;length(6)">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-publish">注册</button>
+                    <div class="alert alert-danger alert-dismissible" role="alert" th:if="${signupSuccess != null}">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">
+                                &times;
+                            </span>
+                        </button>
+                        <strong th:if="${signupSuccess.equals('fail')} == true">注册失败！请检查填写的信息！</strong>
+                        <strong th:if="${signupSuccess.equals('success')} == true">注册成功！请登录！</strong>
+                        <strong th:if="${signupSuccess.equals('fail-dup-account')} == true">账号已存在！请直接登录！</strong>
+                        <strong th:if="${signupSuccess.equals('fail-dup-email')} == true">邮箱已存在！请直接登录！</strong>
+                    </div>
+                </form>
+            </div>
+            <div class="login-right col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <div class="login-other-all">
+                    <h4>第三方登录</h4>
+                    <a class="login-other"
+                       th:href="@{https://github.com/login/oauth/authorize(client_id='671e0e75da19a2cb124b',redirect_uri=${#httpServletRequest.getServletContext().getAttribute('redirectUri')},scope='user',state=1)}">
+                        <img src="/images/github.svg" class="login-icon">
+                        Github
+                    </a>
+                    <a href="https://gitee.com/oauth/authorize?client_id=8946d87d3965015cdb6eb9ac8262a077b61a8636ab66dbad08485529677cef64&amp;redirect_uri=http://www.dbeetle.cn/giteeCallback&amp;response_type=code&amp;scope=user_info&amp;state=giteelogin"
+                       class="login-other">
+                        <img src="/images/gitee.svg" class="login-icon">
+                        Gitee（暂时无法使用）
+                    </a>
+                    <a href="/loginByQQ">
+                        <img src="/images/qq.svg" class="login-icon">
+                        QQ（暂时无法使用）
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        <div class="login-page-footer" style="margin-top: 8px">
+            <img src="/icons/info.svg" class="login-icon">
+            <b>已有账号？<a href="/login">点击登录</a></b>
+        </div>
+    </div>
+</div>
+
+<!--页尾-->
+<div style="text-align: center" th:insert="~{footer :: foot}"></div>
+</body>
+</html>
