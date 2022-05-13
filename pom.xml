@@ -14,7 +14,7 @@
     <name>cs-knowledge-community</name>
     <description>cs-knowledge-community</description>
     <properties>
-        <java.version>18</java.version>
+        <java.version>1.8</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -107,7 +107,7 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>8.5.8</version>
                 <configuration>
-                    <url>jdbc:h2:~/communityDB</url>
+                    <url>jdbc:h2:~/newCsCommunityDB</url>
                     <user>sa</user>
                     <password>123456</password>
                 </configuration>
