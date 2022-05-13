@@ -83,11 +83,6 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper</artifactId>
-            <version>5.2.1</version>
-        </dependency>
-        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.12.0</version>
@@ -102,6 +97,11 @@
             <artifactId>cos_api</artifactId>
             <version>5.6.54</version>
         </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>5.2.1</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -112,9 +112,9 @@
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
-                <version>8.5.8</version>
+                <version>5.2.4</version>
                 <configuration>
-                    <url>jdbc:mysql://172.17.0.16:3306/CsCommunity</url>
+                    <url>jdbc:mysql://sh-cynosdbmysql-grp-p4hzt8v2.sql.tencentcdb.com:21536/CsCommunity</url>
                     <user>root</user>
                     <password>hcj000515!!!</password>
                 </configuration>

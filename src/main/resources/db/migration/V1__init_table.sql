@@ -1,108 +1,107 @@
 -- auto-generated definition
-create table USER_INFO
+create table user_info
 (
-    ID           BIGINT auto_increment,
-    ACCOUNT_NAME CHARACTER,
-    TOKEN        CHARACTER,
-    GMT_CREATE   BIGINT,
-    GMT_MODIFIED BIGINT,
-    ACCOUNT_ID   CHARACTER not null,
-    BIO          CHARACTER,
-    AVATAR_URL   CHARACTER,
-    PASSWORD     CHARACTER,
-    EMAIL        CHARACTER,
-    SALT         CHARACTER,
-    STATUS       INTEGER default 0,
-    constraint USER_INFO_PK
-        primary key (ACCOUNT_ID)
+    account_name character,
+    token        character,
+    gmt_create   bigint,
+    gmt_modified bigint,
+    account_id   character not null,
+    bio          character,
+    avatar_url   character,
+    password     character,
+    email        character,
+    salt         character,
+    status       integer default 0,
+    constraint user_info_pk
+        primary key (account_id)
 );
 
 -- auto-generated definition
-create table STAR_RECORD
+create table star_record
 (
-    ID           BIGINT auto_increment,
-    TARGET_ID    BIGINT    not null,
-    GMT_CREATE   BIGINT,
-    GMT_MODIFIED BIGINT,
-    STAR_CREATOR CHARACTER not null,
-    constraint STAR_RECORD_PK
-        primary key (ID)
+    id           bigint auto_increment,
+    target_id    bigint    not null,
+    gmt_create   bigint,
+    gmt_modified bigint,
+    star_creator character not null,
+    constraint star_record_pk
+        primary key (id)
 );
 
 -- auto-generated definition
-create table QUESTION
+create table question
 (
-    ID            BIGINT auto_increment
+    id            bigint auto_increment
         primary key,
-    TITLE         CHARACTER,
-    DESCRIPTION   CHARACTER,
-    GMT_CREATE    BIGINT,
-    GMT_MODIFIED  BIGINT,
-    CREATOR       CHARACTER,
-    COMMENT_COUNT BIGINT  default 0,
-    VIEW_COUNT    BIGINT  default 0,
-    LIKE_COUNT    BIGINT  default 0,
-    TAG           CHARACTER,
-    STAR_COUNT    BIGINT,
-    STICKY        INTEGER default 0
+    title         character,
+    description   character,
+    gmt_create    bigint,
+    gmt_modified  bigint,
+    creator       character,
+    comment_count bigint  default 0,
+    view_count    bigint  default 0,
+    like_count    bigint  default 0,
+    tag           character,
+    star_count    bigint,
+    sticky        integer default 0
 );
 
 -- auto-generated definition
-create table NOTIFICATION
+create table notification
 (
-    ID            BIGINT auto_increment,
-    NOTIFIER      CHARACTER         not null,
-    RECEIVER      CHARACTER         not null,
-    OUTER_ID      BIGINT            not null,
-    TYPE          INTEGER           not null,
-    GMT_CREATE    BIGINT            not null,
-    STATUS        INTEGER default 0 not null,
-    NOTIFIER_NAME CHARACTER,
-    OUTER_TITLE   CHARACTER,
-    constraint NOTIFICATION_PK
-        primary key (ID)
+    id            bigint auto_increment,
+    notifier      character         not null,
+    receiver      character         not null,
+    outer_id      bigint            not null,
+    type          integer           not null,
+    gmt_create    bigint            not null,
+    status        integer default 0 not null,
+    notifier_name character,
+    outer_title   character,
+    constraint notification_pk
+        primary key (id)
 );
 
 -- auto-generated definition
-create table NAV
+create table nav
 (
-    ID           INTEGER auto_increment,
-    TITLE        CHARACTER,
-    URL          CHARACTER,
-    PRIORITY     INTEGER default 0,
-    GMT_CREATE   BIGINT,
-    GMT_MODIFIED BIGINT,
-    STATUS       INTEGER,
-    constraint NAV_PK
-        primary key (ID)
+    id           integer auto_increment,
+    title        character,
+    url          character,
+    priority     integer default 0,
+    gmt_create   bigint,
+    gmt_modified bigint,
+    status       integer,
+    constraint nav_pk
+        primary key (id)
 );
 
 -- auto-generated definition
-create table LIKE_RECORD
+create table like_record
 (
-    ID           BIGINT auto_increment,
-    TARGET_ID    BIGINT    not null,
-    GMT_CREATE   BIGINT,
-    GMT_MODIFIED BIGINT,
-    LIKE_CREATOR CHARACTER not null,
-    constraint LIKE_PK
-        primary key (ID)
+    id           bigint auto_increment,
+    target_id    bigint    not null,
+    gmt_create   bigint,
+    gmt_modified bigint,
+    like_creator character not null,
+    constraint like_pk
+        primary key (id)
 );
 
 -- auto-generated definition
-create table COMMENT
+create table comment
 (
-    ID            BIGINT auto_increment,
-    PARENT_ID     BIGINT,
-    COMMENT_TYPE  INTEGER,
-    GMT_CREATE    BIGINT,
-    GMT_MODIFIED  BIGINT,
-    LIKE_COUNT    BIGINT default 0,
-    CONTENT       CHARACTER,
-    COMMENTATOR   CHARACTER,
-    COMMENT_COUNT BIGINT default 0,
-    constraint COMMENT_PK
-        primary key (ID)
+    id            bigint auto_increment,
+    parent_id     bigint,
+    comment_type  integer,
+    gmt_create    bigint,
+    gmt_modified  bigint,
+    like_count    bigint default 0,
+    content       character,
+    commentator   character,
+    comment_count bigint default 0,
+    constraint comment_pk
+        primary key (id)
 );
 
 
