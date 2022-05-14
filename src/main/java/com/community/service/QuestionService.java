@@ -134,7 +134,7 @@ public class QuestionService {
         QuestionExample questionExample1 = new QuestionExample();
         questionExample1.createCriteria()
                 .andCreatorEqualTo(accountID);
-        List<Question> questions = questionMapper.selectByExampleWithBLOBsWithRowbounds(questionExample1, new RowBounds(offset, size));
+        List<Question> questions = questionMapper.selectByExampleWithRowbounds(questionExample1, new RowBounds(offset, size));
         List<QuestionDTO> questionDTOList = new ArrayList<>();
 
         for (Question question : questions) {

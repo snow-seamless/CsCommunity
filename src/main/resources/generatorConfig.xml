@@ -6,10 +6,10 @@
     <context id="DB2Tables" targetRuntime="MyBatis3">
 
         <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
-        <jdbcConnection driverClass="org.h2.Driver"
-                        connectionURL="jdbc:h2:~/communityDB"
-                        userId="sa"
-                        password="123456">
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://sh-cynosdbmysql-grp-p4hzt8v2.sql.tencentcdb.com:21536/CsCommunity"
+                        userId="root"
+                        password="hcj000515!!!">
         </jdbcConnection>
 
         <javaTypeResolver>
