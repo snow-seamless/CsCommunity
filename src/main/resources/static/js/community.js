@@ -182,7 +182,7 @@ function starIt(e) {
                     iconElement.classList.add("glyphicon-star");
                     textElement.innerText = (parseFloat(cnt) + 1).toString();
                 } else {
-                    alert("收藏错误！");
+                    alert("收藏错误！请登录，或者重试！");
                 }
 
             }, dataType: "json"
@@ -230,7 +230,7 @@ function likeIt(e) {
                     iconElement.classList.add("glyphicon-heart");
                     textElement.innerText = (parseFloat(cnt) + 1).toString();
                 } else {
-                    alert("点赞错误！");
+                    alert("点赞错误！请登录，或者重试！");
                 }
 
             }, dataType: "json"

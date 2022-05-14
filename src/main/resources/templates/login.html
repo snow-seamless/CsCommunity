@@ -50,7 +50,7 @@
                         </label>
                     </div>
                     <div style="height: 60px;">
-                        <button class="btn btn-default btn-forget-pwd" onclick="modify()">忘记密码</button>
+                        <button class="btn btn-default btn-forget-pwd" onclick="modify()">忘记密码（暂时无法使用）</button>
                         <button type="submit" class="btn btn-primary btn-publish">登录</button>
                     </div>
                     <div class="alert alert-danger alert-dismissible" role="alert" th:if="${loginFail != null}">
@@ -68,9 +68,9 @@
                 <div class="login-other-all">
                     <h4>第三方登录</h4>
                     <a class="login-other"
-                       th:href="@{https://github.com/login/oauth/authorize(client_id='671e0e75da19a2cb124b',redirect_uri=${#httpServletRequest.getServletContext().getAttribute('redirectURI')},scope='user',state=1)}">
+                       th:href="@{https://github.com/login/oauth/authorize(client_id='671e0e75da19a2cb124b',redirect_uri=${#httpServletRequest.getServletContext().getAttribute('redirectUri')},scope='user',state=1)}">
                         <img src="/images/github.svg" class="login-icon">
-                        Github
+                        Github（暂时无法使用）
                     </a>
                     <a href="https://gitee.com/oauth/authorize?client_id=8946d87d3965015cdb6eb9ac8262a077b61a8636ab66dbad08485529677cef64&amp;redirect_uri=http://www.dbeetle.cn/giteeCallback&amp;response_type=code&amp;scope=user_info&amp;state=giteelogin"
                        class="login-other">
