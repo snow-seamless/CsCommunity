@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -36,7 +37,8 @@ public class AuthorizeController {
     @GetMapping("/callback")
     public String callback(@RequestParam(name = "code") String code,
                            @RequestParam(name = "state") String state,
-                           HttpServletResponse response) {
+                           HttpServletResponse response,
+                           Model model) {
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
         accessTokenDTO.setCode(code);
         accessTokenDTO.setRedirectURI(redirectURI);
@@ -60,8 +62,10 @@ public class AuthorizeController {
             return "redirect:/";
         } else {
             // 登陆失败
+            String timeout = "网络原因，请求超时！请重新登陆！";
             log.error("callback get github error,{}", githubUser);
-            return "redirect:/";
+            model.addAttribute("GitHubFail", timeout);
+            return "login";
         }
     }
 

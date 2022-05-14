@@ -66,11 +66,17 @@
             </div>
             <div class="login-right col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <div class="login-other-all">
+                    <script th:if="${GitHubFail} != null">
+                        debugger;
+                        var timeout = "[[${GitHubFail}]]";
+                        if (timeout.toString() != null)
+                            alert(timeout.toString());
+                    </script>
                     <h4>第三方登录</h4>
                     <a class="login-other"
-                       th:href="@{https://github.com/login/oauth/authorize(client_id='671e0e75da19a2cb124b',redirect_uri=${#httpServletRequest.getServletContext().getAttribute('redirectUri')},scope='user',state=1)}">
+                       th:href="@{https://github.com/login/oauth/authorize(client_id='671e0e75da19a2cb124b',redirect_uri=${@environment.getProperty('github.redirect.uri')},scope='user',state=1)}">
                         <img src="/images/github.svg" class="login-icon">
-                        Github（暂时无法使用）
+                        Github
                     </a>
                     <a href="https://gitee.com/oauth/authorize?client_id=8946d87d3965015cdb6eb9ac8262a077b61a8636ab66dbad08485529677cef64&amp;redirect_uri=http://www.dbeetle.cn/giteeCallback&amp;response_type=code&amp;scope=user_info&amp;state=giteelogin"
                        class="login-other">

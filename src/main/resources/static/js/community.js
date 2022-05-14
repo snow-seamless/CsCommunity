@@ -350,6 +350,5 @@ function sendModifyEmail() {
             alert(data.message);
         }
     });
-
 }
 
