@@ -352,3 +352,13 @@ function sendModifyEmail() {
     });
 }
 
+function isImage() {
+    let filePath = $('input[name="avatarPath"]').val();
+    let fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase();
+    if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+        alert("请上传图片！");
+        return false;
+    } else {
+        return true;
+    }
+}

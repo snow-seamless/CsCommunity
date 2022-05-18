@@ -83,7 +83,7 @@ public class TencentCloudProvider {
                 Date expiration = new Date(System.currentTimeMillis() + expiresTime);
                 generatePresignedUrlRequest.setExpiration(expiration);
                 URL url = cosClient.generatePresignedUrl(generatePresignedUrlRequest);
-                return url.toString();
+                return url.getProtocol() + "://" + url.getHost() + url.getPath();
             } else {
                 throw new CustomizeException(CustomizeErrorCode.FILE_UPLOAD_FAIL);
             }

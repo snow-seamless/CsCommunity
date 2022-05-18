@@ -22,9 +22,11 @@ public class PersonalPageController {
         }
         if ("info".equals(action)) {
             model.addAttribute("section", "info");
+            model.addAttribute("user", user);
 
         } else if ("security".equals(action)) {
             model.addAttribute("section", "security");
+            model.addAttribute("user", user);
 
         }
         return "personalPage";

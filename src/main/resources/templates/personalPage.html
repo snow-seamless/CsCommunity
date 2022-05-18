@@ -46,10 +46,15 @@
                         </div>
                         <div class="caption">
                             <h4 style="text-align: center">
-                                <div class="form-group">
-                                    <label for="uploadAvatar">上传头像</label>
-                                    <input type="file" name="head_avatar" id="uploadAvatar" class="btn btn-success">
-                                </div>
+                                <form action="/modifyProfile/info" enctype="multipart/form-data"
+                                      onsubmit="return isImage()" method="post">
+                                    <div class="form-group">
+                                        <label class="btn btn-default" for="uploadAvatar">上传头像</label>
+                                        <input type="file" id="uploadAvatar" name="avatarPath"
+                                               style="position:absolute;clip:rect(0 0 0 0);">
+                                        <button type="submit" class="btn btn-success">确认修改</button>
+                                    </div>
+                                </form>
                             </h4>
                         </div>
                     </div>
