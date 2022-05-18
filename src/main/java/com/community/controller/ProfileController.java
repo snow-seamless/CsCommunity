@@ -37,12 +37,17 @@ public class ProfileController {
             model.addAttribute("section", "questions");
             model.addAttribute("sectionName", "我的提问");
             model.addAttribute("paginationDTO", paginationDTO);
+            return "profile";
         } else if ("replies".equals(action)) {
             PaginationDTO paginationDTO = notificationService.list(user.getAccountId(), page, size);
             model.addAttribute("section", "replies");
             model.addAttribute("sectionName", "最新回复");
             model.addAttribute("paginationDTO", paginationDTO);
+            return "profile";
+        } else if ("myPage".equals(action)) {
+
+            return "personalPage";
         }
-        return "profile";
+        return "redirect:/";
     }
 }

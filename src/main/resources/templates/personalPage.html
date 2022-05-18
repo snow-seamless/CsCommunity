@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>个人主页</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="/js/moment.js"></script>
+    <script src="/js/community.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/community.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1758372_iu83tgg8gw.css">
+</head>
+<body>
+<div th:insert="~{navigation :: nav}"></div>
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <ul class="nav nav-tabs nav-tabs-personal">
+                <li role="presentation" th:class="${section == 'info'}? 'active' : ''">
+                    <a href="/personalPage/info" class="nav-tabs-personalPage">
+                        基本资料
+                    </a>
+                </li>
+                <li role="presentation" th:class="${section == 'security'}? 'active' : ''">
+                    <a href="/personalPage/security" class="nav-tabs-personalPage">
+                        安全设置
+                    </a>
+                </li>
+            </ul>
+            <h3>
+                <span class="glyphicon glyphicon glyphicon-cog" aria-hidden="true">用户设置</span>
+            </h3>
+            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                个人信息
+            </div>
+            <!--            上传头像-->
+            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                <div class="row">
+                    <div class="col-sm-9 col-md-9">
+                        <div class="thumbnail">
+                            <img th:src="${session.user.avatarUrl}" class="img-rounded" width="200px" height="200px">
+                        </div>
+                        <div class="caption">
+                            <h4 style="text-align: center">
+                                <div class="form-group">
+                                    <label for="uploadAvatar">上传头像</label>
+                                    <input type="file" name="head_avatar" id="uploadAvatar" class="btn btn-success">
+                                </div>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
