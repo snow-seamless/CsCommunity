@@ -334,11 +334,11 @@ function sendActiveEmail() {
             alert(data.message);
         }
     });
-
 }
 
 function sendModifyEmail() {
-    var email = $('input[name="email"]').val();
+    var email = $('input[id="inputNewEmail"]').val();
+    debugger;
     if (email == null || email.trim().length === 0) {
         alert("请输入邮箱！");
         return;
@@ -361,4 +361,104 @@ function isImage() {
     } else {
         return true;
     }
+}
+
+function isVisible(e) {
+    var status = e.className.indexOf("glyphicon-eye-close");
+    var oldPwd = document.getElementById("inputOldPassword");
+    var newPwd1 = document.getElementById("inputNewPassword1");
+    var newPwd2 = document.getElementById("inputNewPassword2");
+    if (status != -1) {
+        // 密码不可见
+        e.classList.remove("glyphicon-eye-close");
+        e.classList.add("glyphicon-eye-open");
+        oldPwd.type = "text";
+        newPwd1.type = "text";
+        newPwd2.type = "text";
+    } else {
+        // 密码可见
+        e.classList.remove("glyphicon-eye-open");
+        e.classList.add("glyphicon-eye-close");
+        oldPwd.type = "password";
+        newPwd1.type = "password";
+        newPwd2.type = "password";
+    }
+}
+
+function isSame() {
+    var newPwd1 = $('input[id="inputNewPassword1"]').val();
+    var newPwd2 = $('input[id="inputNewPassword2"]').val();
+    if (newPwd1 == newPwd2 && newPwd1 != "" && newPwd2 != "") return true; else return false;
+}
+
+
+// 修改密码
+function modifyPassword() {
+    var userId = $("#userId").val();
+    var oldPwd = $("#inputOldPassword").val();
+    var newPwd1 = $('input[id="inputNewPassword1"]').val();
+    var newPwd2 = $('input[id="inputNewPassword2"]').val();
+    var param = {};
+    param['newPassword'] = $('input[id="inputNewPassword1"]').val();
+    if (oldPwd == "") {
+        alert("旧密码不能为空，请重新输入！");
+    }
+    $.getJSON("/checkPassword/" + userId + "/" + oldPwd, function (data) {
+        if (data.code === 200) {
+            if (newPwd1 == "" || newPwd2 == "") {
+                alert("新密码不能为空，请重新输入！");
+            }
+            // 密码校验成功
+            if (isSame()) {
+                // 两次输入的密码一致，请求修改密码
+                $.ajax({
+                    type: "POST",
+                    url: "/modifySecurity/password",
+                    data: param,
+                    success: function (response) {
+                        if (response.code == 200) {
+                            // 请求成功
+                            window.location.reload();
+                            alert("密码修改成功！");
+                        } else {
+                            alert("密码修改失败！");
+                        }
+                    },
+                    dataType: "json"
+                });
+            } else {
+                // 两次输入的密码不一致
+                alert("两次输入的密码不一致，请重新输入！");
+            }
+        } else {
+            // 密码校验失败
+            alert("当前密码错误，请重新输入！");
+        }
+    });
+}
+
+// 修改邮箱
+function modifyEmailFunc() {
+    // var userId = $("#userId").val();
+    var param = {};
+    param['newEmail'] = $('input[id="inputNewEmail"]').val();
+    // 检查邮箱是否已经存在了
+    /*
+    * 待补充
+    * */
+    $.ajax({
+        type: "POST",
+        url: "/modifySecurity/email",
+        data: param,
+        success: function (response) {
+            if (response.code == 200) {
+                // 请求成功
+                window.location.reload();
+                alert("邮箱修改成功！");
+            } else {
+                alert("邮箱修改失败！");
+            }
+        },
+        dataType: "json"
+    });
 }

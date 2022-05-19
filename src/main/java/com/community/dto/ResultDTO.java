@@ -41,4 +41,12 @@ public class ResultDTO<T> {
         resultDTO.setData(t);
         return resultDTO;
     }
+
+    public static <T> ResultDTO errorOf(T t) {
+        ResultDTO resultDTO = new ResultDTO();
+        resultDTO.setCode(100);
+        resultDTO.setMessage("请求失败！");
+        resultDTO.setData(t);
+        return resultDTO;
+    }
 }

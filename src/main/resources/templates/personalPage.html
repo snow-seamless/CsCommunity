@@ -1,17 +1,17 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>个人主页</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script src="/js/jquery-3.6.0.min.js"></script>
     <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="/dist/jquery.validator.min.js?local=zh-CN"></script>
     <script src="/js/moment.js"></script>
     <script src="/js/community.js" type="application/javascript"></script>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/css/community.css">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_1758372_iu83tgg8gw.css">
 </head>
 <body>
 <div th:insert="~{navigation :: nav}"></div>
@@ -34,11 +34,101 @@
                 <span class="glyphicon glyphicon glyphicon-cog" aria-hidden="true">用户设置</span>
             </h3>
             <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-                个人信息
+            <!--            修改个人基本信息-->
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" th:if="${section == 'info'}">
+                <h4><b>个人信息</b></h4>
+                <form class="form-horizontal" action="/modifyProfile/baseInfo" method="post" id="form1">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">账号</label>
+                        <div class="col-sm-6">
+                            <p class="form-control-static" th:text="${session.user.accountId}"></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAccountName" class="col-sm-2 control-label">昵称</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="inputAccountName"
+                                   name="inputAccountName"
+                                   th:value="${session.user.accountName}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputBio" class="col-sm-2 control-label">个人简介</label>
+                        <div class="col-sm-5">
+                            <textarea class="form-control" rows="3" cols="6" id="inputBio"
+                                      th:text="${session.user.bio}"
+                                      name="inputBio">
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">性别</label>
+                        <div class="col-sm-5">
+                            <label class="radio-inline">
+                                <input type="radio" name="genderOption" id="inputGenderMale" value="0"
+                                       th:checked="${session.user.gender == 0}"> 男
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="genderOption" id="inputGenderFemale" value="1"
+                                       th:checked="${session.user.gender == 1}"> 女
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="genderOption" id="inputGenderNone" value="2"
+                                       th:checked="${session.user.gender == 2}"> 保密
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputBrith" class="col-sm-2 control-label">生日</label>
+                        <div class="col-sm-5">
+                            <input type="date" class="form-control" id="inputBrith"
+                                   name="inputBrith"
+                                   th:value="${#dates.format(session.user.birth, 'yyyy-MM-dd')}">
+                        </div>
+                    </div>
+                    <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h4><b>联系方式</b></h4>
+                    <div class="form-group">
+                        <label for="inputPhoneNumber" class="col-sm-2 control-label">手机号码</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="inputPhoneNumber"
+                                   name="inputPhoneNumber"
+                                   th:value="${session.user.phoneNumber}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputQQNumber" class="col-sm-2 control-label">QQ</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="inputQQNumber"
+                                   name="inputQQNumber"
+                                   th:value="${session.user.qqNumber}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputWeChat" class="col-sm-2 control-label">微信</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="inputWeChat"
+                                   name="inputWeChat"
+                                   th:value="${session.user.wechat}">
+                        </div>
+                    </div>
+                    <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h4><b>教育经历</b></h4>
+                    <div class="form-group">
+                        <label for="inputUniversity" class="col-sm-2 control-label">大学</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="inputUniversity"
+                                   name="inputUniversity"
+                                   th:value="${session.user.university}">
+                        </div>
+                    </div>
+                    <div class="col-sm-2 btn-publish">
+                        <button type="submit" class="btn btn-success btn-block">保存</button>
+                    </div>
+                </form>
             </div>
             <!--            上传头像-->
-            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" th:if="${section == 'info'}">
                 <div class="row">
                     <div class="col-sm-9 col-md-9">
                         <div class="thumbnail">
@@ -46,7 +136,7 @@
                         </div>
                         <div class="caption">
                             <h4 style="text-align: center">
-                                <form action="/modifyProfile/info" enctype="multipart/form-data"
+                                <form action="/modifyProfile/avatar" enctype="multipart/form-data"
                                       onsubmit="return isImage()" method="post">
                                     <div class="form-group">
                                         <label class="btn btn-default" for="uploadAvatar">上传头像</label>
@@ -60,8 +150,77 @@
                     </div>
                 </div>
             </div>
+            <!--            修改密码、重新绑定邮箱等-->
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" th:if="${section == 'security'}">
+                <h4><b>修改密码</b>
+                    <span onclick="isVisible(this)"
+                          class="glyphicon glyphicon-eye-close"
+                          id="isVisible"
+                          style="cursor: pointer">
+                    </span>
+                </h4>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="inputOldPassword" class="col-sm-2 control-label">当前密码</label>
+                        <div class="col-sm-5">
+                            <input type="password" class="form-control" id="inputOldPassword"
+                                   data-rule="当前密码:required">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputNewPassword1" class="col-sm-2 control-label">新的密码</label>
+                        <div class="col-sm-5">
+                            <input type="password" class="form-control" id="inputNewPassword1"
+                                   data-rule="新密码:required;length(6~16)">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputNewPassword2" class="col-sm-2 control-label">确认密码</label>
+                        <div class="col-sm-5">
+                            <input type="password" class="form-control" id="inputNewPassword2"
+                                   data-rule="新密码:required;length(6~16)">
+                        </div>
+                    </div>
+                    <div class="col-sm-2 btn-publish">
+                        <input type="hidden" id="userId" th:value="${session.user.accountId}">
+                        <button type="button" class="btn btn-success btn-block" onclick="modifyPassword()">修改密码</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" th:if="${section == 'security'}">
+                <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h4><b>重新绑定邮箱</b></h4>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="inputNewEmail" class="col-sm-2 control-label">新的邮箱</label>
+                        <div class="col-sm-5">
+                            <input type="email" class="form-control" id="inputNewEmail"
+                                   data-rule="邮箱:required;email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="modifyEmail" class="col-sm-2 control-label">
+                            <button id="send-email-btn" type="button" class="btn btn-default btn-xs send-email-btn"
+                                    onclick="sendModifyEmail()">获取验证码
+                            </button>
+                        </label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="modifyEmail"
+                                   placeholder="请输入您获取的验证码..."
+                                   name="code"
+                                   data-rule="验证码:required;length(6)">
+                        </div>
+                    </div>
+                    <div class="col-sm-2 btn-publish">
+                        <button type="button" class="btn btn-success btn-block btn-publish" onclick="modifyEmailFunc()">修改邮箱</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
+</div>
+<!--页尾-->
+<div style="text-align: center" th:insert="~{footer :: foot}"></div>
 </body>
 </html>

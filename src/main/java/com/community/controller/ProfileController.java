@@ -44,9 +44,6 @@ public class ProfileController {
             model.addAttribute("sectionName", "最新回复");
             model.addAttribute("paginationDTO", paginationDTO);
             return "profile";
-        } else if ("myPage".equals(action)) {
-
-            return "personalPage";
         }
         return "redirect:/";
     }
