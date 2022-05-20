@@ -442,10 +442,6 @@ function modifyEmailFunc() {
     // var userId = $("#userId").val();
     var param = {};
     param['newEmail'] = $('input[id="inputNewEmail"]').val();
-    // 检查邮箱是否已经存在了
-    /*
-    * 待补充
-    * */
     $.ajax({
         type: "POST",
         url: "/modifySecurity/email",

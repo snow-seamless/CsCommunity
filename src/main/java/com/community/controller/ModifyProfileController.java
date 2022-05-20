@@ -137,13 +137,13 @@ public class ModifyProfileController {
     public ResultDTO sendModifyEmail(@PathVariable(name = "email") String email,
                                      HttpServletResponse response) {
         // 使用cookie存储验证码用于校验
-//        UserExample userExample = new UserExample();
-//        userExample.createCriteria()
-//                .andEmailEqualTo(email);
-//        List<User> users = userMapper.selectByExample(userExample);
-//        if (users == null || users.size() == 0) {
-//            return ResultDTO.errorOf(100, "用户不存在！");
-//        }
+        UserExample userExample = new UserExample();
+        userExample.createCriteria()
+                .andEmailEqualTo(email);
+        List<User> users = userMapper.selectByExample(userExample);
+        if (users != null || users.size() != 0) {
+            return ResultDTO.errorOf(100, "该邮箱已被绑定，请重新输入！");
+        }
         String modifyCode = userService.sendEmail(email, "modifyCode");
         Cookie cookie = new Cookie("modifyCode", modifyCode);
         cookie.setPath("/");
