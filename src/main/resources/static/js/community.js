@@ -295,9 +295,10 @@ function checkLiked() {
     });
 }
 
-// 跳转到修改信息界面
-function modify() {
-    window.location.replace("/modify");
+// 跳转到忘记密码界面
+function forgetPwd() {
+    debugger;
+    window.location.assign("/forgetPassword");
 }
 
 function invokeSetTime(obj) {

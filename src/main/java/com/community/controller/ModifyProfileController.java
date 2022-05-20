@@ -61,9 +61,15 @@ public class ModifyProfileController {
             user.setAccountName(request.getParameter("inputAccountName"));
             user.setUniversity(request.getParameter("inputUniversity"));
             user.setBio(request.getParameter("inputBio"));
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = formatter.parse(request.getParameter("inputBrith"));
-            user.setBirth(date);
+            String birth = request.getParameter("inputBrith");
+            if (!birth.isEmpty()) {
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = formatter.parse(birth);
+                user.setBirth(date);
+            } else {
+                Date emptyDate = null;
+                user.setBirth(emptyDate);
+            }
             user.setQqNumber(request.getParameter("inputQQNumber"));
             user.setWechat(request.getParameter("inputWeChat"));
             user.setGender(Integer.valueOf(request.getParameter("genderOption")));
