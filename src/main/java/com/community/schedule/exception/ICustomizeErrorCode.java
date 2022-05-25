@@ -1,4 +1,4 @@
-package com.community.exception;
+package com.community.schedule.exception;
 
 public interface ICustomizeErrorCode {
     String getMessage();

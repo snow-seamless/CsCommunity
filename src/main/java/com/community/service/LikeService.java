@@ -1,7 +1,7 @@
 package com.community.service;
 
-import com.community.exception.CustomizeErrorCode;
-import com.community.exception.CustomizeException;
+import com.community.schedule.exception.CustomizeErrorCode;
+import com.community.schedule.exception.CustomizeException;
 import com.community.mapper.*;
 import com.community.model.Comment;
 import com.community.model.Like;

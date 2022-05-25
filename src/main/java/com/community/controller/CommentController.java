@@ -4,7 +4,7 @@ import com.community.dto.CommentCreateDTO;
 import com.community.dto.CommentDTO;
 import com.community.dto.ResultDTO;
 import com.community.enums.CommentTypeEnum;
-import com.community.exception.CustomizeErrorCode;
+import com.community.schedule.exception.CustomizeErrorCode;
 import com.community.model.Comment;
 import com.community.model.User;
 import com.community.service.CommentService;
@@ -12,7 +12,6 @@ import com.community.service.LikeService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;

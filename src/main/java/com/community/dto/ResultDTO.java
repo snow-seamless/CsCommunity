@@ -1,10 +1,8 @@
 package com.community.dto;
 
-import com.community.exception.CustomizeErrorCode;
-import com.community.exception.CustomizeException;
+import com.community.schedule.exception.CustomizeErrorCode;
+import com.community.schedule.exception.CustomizeException;
 import lombok.Data;
-
-import java.util.List;
 
 @Data
 public class ResultDTO<T> {

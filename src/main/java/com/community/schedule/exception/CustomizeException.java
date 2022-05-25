@@ -1,4 +1,4 @@
-package com.community.exception;
+package com.community.schedule.exception;
 
 public class CustomizeException extends RuntimeException {
     private String message;
