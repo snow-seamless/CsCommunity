@@ -4,7 +4,7 @@ import com.community.dto.CommentCreateDTO;
 import com.community.dto.CommentDTO;
 import com.community.dto.ResultDTO;
 import com.community.enums.CommentTypeEnum;
-import com.community.schedule.exception.CustomizeErrorCode;
+import com.community.exception.CustomizeErrorCode;
 import com.community.model.Comment;
 import com.community.model.User;
 import com.community.service.CommentService;

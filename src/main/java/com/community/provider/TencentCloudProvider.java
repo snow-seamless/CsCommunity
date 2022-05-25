@@ -1,7 +1,7 @@
 package com.community.provider;
 
-import com.community.schedule.exception.CustomizeErrorCode;
-import com.community.schedule.exception.CustomizeException;
+import com.community.exception.CustomizeErrorCode;
+import com.community.exception.CustomizeException;
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.ClientConfig;
 import com.qcloud.cos.auth.BasicCOSCredentials;
