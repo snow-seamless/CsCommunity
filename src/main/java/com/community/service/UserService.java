@@ -1,5 +1,6 @@
 package com.community.service;
 
+import com.community.mapper.UserExtMapper;
 import com.community.mapper.UserMapper;
 import com.community.model.User;
 import com.community.model.UserExample;
@@ -16,6 +17,13 @@ public class UserService {
     private RandomCodeService randomCodeService;
     @Autowired
     private MailService mailService;
+    @Autowired
+    private UserExtMapper userExtMapper;
+
+    public List<User> list(){
+        List<User> userList = userExtMapper.selectUsersAll();
+        return userList;
+    }
 
     public void createOrUpdate(User user) {
         UserExample userExample = new UserExample();

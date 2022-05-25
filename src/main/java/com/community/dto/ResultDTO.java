@@ -4,8 +4,6 @@ import com.community.exception.CustomizeErrorCode;
 import com.community.exception.CustomizeException;
 import lombok.Data;
 
-import java.util.List;
-
 @Data
 public class ResultDTO<T> {
     private Integer code;

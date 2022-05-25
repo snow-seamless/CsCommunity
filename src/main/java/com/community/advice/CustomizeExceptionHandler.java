@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.community.dto.ResultDTO;
 import com.community.exception.CustomizeErrorCode;
 import com.community.exception.CustomizeException;
-import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
