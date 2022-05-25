@@ -72,14 +72,14 @@
                     </script>
                     <h4>第三方登录</h4>
                     <a class="login-other"
-                       th:href="@{https://github.com/login/oauth/authorize(client_id='671e0e75da19a2cb124b',redirect_uri=${@environment.getProperty('github.redirect.uri')},scope='user',state=1)}">
+                       th:href="@{https://github.com/login/oauth/authorize(client_id=${@environment.getProperty('github.client.id')},redirect_uri=${@environment.getProperty('github.redirect.uri')},scope='user',state=1)}">
                         <img src="/images/github.svg" class="login-icon">
                         Github
                     </a>
-                    <a href="https://gitee.com/oauth/authorize?client_id=8946d87d3965015cdb6eb9ac8262a077b61a8636ab66dbad08485529677cef64&amp;redirect_uri=http://www.dbeetle.cn/giteeCallback&amp;response_type=code&amp;scope=user_info&amp;state=giteelogin"
-                       class="login-other">
+                    <a  class="login-other"
+                       th:href="@{https://gitee.com/oauth/authorize(client_id='3eb70bb1c96c59bca54ce142960ae0939d846c56b577f9551762165fe1b64cd3',redirect_uri=${#httpServletRequest.getServletContext().getAttribute('giteeRedirectUri')},response_type=code)}">
                         <img src="/images/gitee.svg" class="login-icon">
-                        Gitee（暂时无法使用）
+                        Gitee
                     </a>
                     <a href="/loginByQQ">
                         <img src="/images/qq.svg" class="login-icon">

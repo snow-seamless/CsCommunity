@@ -105,7 +105,9 @@ body {
 }
 
 .jumbotron {
-    margin: 50px;
+    margin: 150px;
+    padding-top: 83px;
+    padding-bottom: 83px;
 }
 
 .comment {
