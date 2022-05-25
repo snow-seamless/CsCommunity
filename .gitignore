@@ -3,6 +3,7 @@ target/
 logs/
 !.mvn/wrapper/maven-wrapper.jar
 /src/main/resources/application-production.properties
+/src/main/resources/application-dev.properties
 !**/src/main/**/target/
 !**/src/test/**/target/
 
