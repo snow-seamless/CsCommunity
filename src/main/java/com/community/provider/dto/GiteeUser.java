@@ -1,9 +1,10 @@
-package com.community.dto;
+package com.community.provider.dto;
+
 
 import lombok.Data;
 
 @Data
-public class GithubUser {
+public class GiteeUser {
     private String name;
     private Long id;
     private String bio;
