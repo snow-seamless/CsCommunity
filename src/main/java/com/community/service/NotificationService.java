@@ -44,7 +44,7 @@ public class NotificationService {
         if (page < 1) {
             page = 1;
         }
-        if (page > totalPage) {
+        if (page > totalPage && page > 0 && totalPage > 0) {
             page = totalPage;
         }
 
